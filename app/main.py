@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.products import router as products_router
-from app.api.board import router as board_router
+from app.api.boards import router as boards_router
 
 app = FastAPI()
 
@@ -17,4 +17,4 @@ app.add_middleware(
 
 # 라우터 등록
 app.include_router(products_router, prefix="/products")
-app.include_router(board_router, prefix="/board")
+app.include_router(boards_router, prefix="/boards")

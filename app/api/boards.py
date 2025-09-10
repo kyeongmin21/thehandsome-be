@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from datetime import datetime
+from pydantic import BaseModel
 
 router = APIRouter()
 
@@ -10,25 +11,30 @@ boards = [
 ]
 
 # GET
-@router.get("")
+@router.get("/")
 def get_boards():
     return boards
 
 
+class BoardCreate(BaseModel):
+    title: str
+    content: str
+
 # POST: 글 작성
-@router.post("/boards")
-def creat_boards(title: str, content: str):
+@router.post("/")
+def create_boards(board: BoardCreate):
     new_id = max(post["id"] for post in boards) + 1 if boards else 1
-    now = datetime.now()  # 현재 시간
+    now = datetime.now()
     new_board = {
         "id": new_id,
-        "title": title,
-        "content": content,
-        "created_at": now.isoformat(),
-        "updated_at": now.isoformat()  # 수정 시간도 초기값은 등록 시간과 같음
+        "title": board.title,
+        "content": board.content,
+        "created_at": now.strftime("%Y-%m-%d %H:%M"),
+        "updated_at": now.strftime("%Y-%m-%d %H:%M"),
     }
     boards.append(new_board)
-    return {"message": "게시판 글 작성 완료"}
+    return {"message": "게시판 글 작성 완료", "board": new_board}
+
 
 
 # UPDATE
