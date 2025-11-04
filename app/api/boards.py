@@ -1,75 +1,63 @@
-from fastapi import APIRouter, HTTPException
 from datetime import datetime
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from app.database import get_db
+from app.models.boards import Board
+from app.schemas.boards import BoardCreate, BoardUpdate, BoardOut
 
 router = APIRouter()
 
-# 임시 게시판 데이터 (DB 대신 리스트 사용)
-boards = [
-    {"id": 1, "title": "첫 글", "content": "게시판 글입니다.", "created_at": '', "x": ''},
-    {"id": 2, "title": "공지사항", "content": "여기는 공지입니다.", "created_at": '', "updated_at": ''},
-    {"id": 3, "title": "공지사항", "content": "여기는 공지입니다.", "created_at": '', "updated_at": ''},
-]
 
-# GET
-@router.get("")
-def get_boards():
-    return boards
+# GET: 모든 게시글 조회
+@router.get("", response_model=list[BoardOut])
+def get_boards(db: Session = Depends(get_db)):
+    return db.query(Board).all()
 
 
-# GET: 단일 글 조회
-@router.get("/{board_id}")
-def get_board(board_id: int):
-    for board in boards:
-        if board["id"] == board_id:
-            return board
-    raise HTTPException(status_code=404, detail="글을 찾을 수 없습니다.")
+# GET: 단일 게시글 조회
+@router.get("/{board_id}", response_model=BoardOut)
+def get_board(board_id: int, db: Session = Depends(get_db)):
+    board = db.query(Board).filter(Board.id == board_id).first()
+    if not board:
+        raise HTTPException(status_code=404, detail="글을 찾을 수 없습니다.")
+    return board
 
 
-# POST: 글 작성
-class BoardCreate(BaseModel):
-    title: str
-    content: str
-
-@router.post("/create")
-def create_boards(board: BoardCreate):
-    new_id = max(post["id"] for post in boards) + 1 if boards else 1
-    now = datetime.now()
-    new_board = {
-        "id": new_id,
-        "title": board.title,
-        "content": board.content,
-        "created_at": now.strftime("%Y-%m-%d %H:%M"),
-        "updated_at": now.strftime("%Y-%m-%d %H:%M"),
-    }
-    boards.append(new_board)
-    return {"message": "게시판 글 작성 완료", "board": new_board}
+# POST: 게시글 작성
+@router.post("/create", response_model=BoardOut)
+def create_board(board: BoardCreate, db: Session = Depends(get_db)):
+    new_board = Board(
+        title=board.title,
+        content=board.content,
+        created_at=datetime.now(),
+        updated_at=datetime.now()
+    )
+    db.add(new_board)
+    db.commit()
+    db.refresh(new_board)
+    return new_board
 
 
+# PUT: 게시글 수정
+@router.put("/edit/{board_id}", response_model=BoardOut)
+def update_board(board_id: int, update: BoardUpdate, db: Session = Depends(get_db)):
+    board = db.query(Board).filter(Board.id == board_id).first()
+    if not board:
+        raise HTTPException(status_code=404, detail="글을 찾을 수 없습니다.")
+    board.title = update.title
+    board.content = update.content
+    board.updated_at = datetime.now()
+    db.commit()
+    db.refresh(board)
+    return board
 
 
-# UPDATE
-class BoardUpdate(BaseModel):
-    title: str
-    content: str
-
-@router.put("/edit/{board_id}")
-def update_boards(board_id: int, update: BoardUpdate):
-    now = datetime.now()
-    for board in boards:
-        if board["id"] == board_id:
-            board["title"] = update.title
-            board["content"] = update.content
-            board["updated_at"] = now.strftime("%Y-%m-%d %H:%M")
-            return board
-    raise HTTPException(status_code=404, detail="글을 찾을 수 없습니다.")
-
-
-# DELETE: 삭제
+# DELETE: 게시글 삭제
 @router.delete("/{board_id}")
-def delete_board(board_id: int):
-    for board in boards:
-        if board["id"] == board_id:
-            boards.remove(board)
-            return {"message": "게시판 글 삭제 완료"}
-    raise HTTPException(status_code=404, detail="글을 찾을 수 없습니다.")
+def delete_board(board_id: int, db: Session = Depends(get_db)):
+    board = db.query(Board).filter(Board.id == board_id).first()
+    if not board:
+        raise HTTPException(status_code=404, detail="글을 찾을 수 없습니다.")
+    db.delete(board)
+    db.commit()
+    return {"message": "게시판 글 삭제 완료"}
