@@ -1,40 +1,62 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
+from sqlalchemy.orm import Session
+from app.database import get_db
+from app.models.product import Product
+from app.schemas.product import ProductCreate, ProductUpdate, ProductOut
+from datetime import datetime
+
 router = APIRouter()
 
-# 샘플 상품 데이터
-products = [
-    {"id": 1, "name": "화이트 셔츠", "price": 30000},
-    {"id": 2, "name": "블루 데님 팬츠", "price": 45000},
-    {"id": 3, "name": "블랙 자켓", "price": 75000},
-    {"id": 4, "name": "블랙 자켓", "price": 75000},
-]
 
 # GET: 전체 상품 조회
-@router.get("")
-def get_products():
-    return products
+@router.get("", response_model=list[ProductOut])
+def get_products(db: Session = Depends(get_db)):
+    return db.query(Product).all()
 
 
 # POST: 상품 추가
-@router.post("/products")
-def create_product(product: dict):
-    products.append(product) # append(x) 는 리스트 맨 뒤에 x 를 추가
-    return {"message": "상품 추가 완료"}
+@router.post("/products", response_model=ProductOut)
+def create_product(product: ProductCreate, db: Session = Depends(get_db)):
+    new_product = Product(
+        name=product.name,
+        price=product.price,
+        discount_price=product.discount_price,
+        discount_rate=product.discount_rate,
+        category_id=product.category_id,
+        brand=product.brand,
+        likes=0,
+        created_at=datetime.now(),
+        updated_at=datetime.now()
+    )
+    db.add(new_product)
+    db.commit()
+    db.refresh(new_product)
+    return new_product
 
-#PUT: 상품 수정
-@router.put("/products/{product_id}")
-def update_product(product_id: int, updated: dict):
-    for product in products:
-        if product["id"] == product_id:
-            product.update(updated)
-            return {"message": "상품 수정 완료"}
-    return HTTPException(status_code=404, detail="상품 없음")
 
-#DELETE: 상품 삭제
+# PUT: 상품 수정
+@router.put("/products/{product_id}", response_model=ProductOut)
+def update_product(product_id: int, updated: ProductUpdate, db: Session = Depends(get_db)):
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="상품 없음")
+
+    for key, value in updated.dict(exclude_unset=True).items():
+        setattr(product, key, value)
+    product.updated_at = datetime.now()
+
+    db.commit()
+    db.refresh(product)
+    return product
+
+
+# DELETE: 상품 삭제
 @router.delete("/products/{product_id}")
-def delete_product(product_id: int):
-    for i, p in enumerate(products):
-        if p["id"] == product_id:
-            products.pop(i)
-            return {"message": "상품 삭제 완료"}
-    raise HTTPException(status_code=404, detail="상품 없음")
+def delete_product(product_id: int, db: Session = Depends(get_db)):
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="상품 없음")
+    db.delete(product)
+    db.commit()
+    return {"message": "상품 삭제 완료"}
+

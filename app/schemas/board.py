@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 
-# 글 작성할 때 프론트에서 보내는 입력용 데이터
+# 글 작성할 때 프론트에서 보내는 입력용 데이터 (프론트 > 백엔드)
 class BoardCreate(BaseModel):
     title: str
     content: str
