@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
-class CategoryRead(BaseModel):
+class CategoryOut(BaseModel):
     id: int
     name: str
     price: Optional[int] = None
@@ -11,8 +11,8 @@ class CategoryRead(BaseModel):
     parent_id: Optional[int] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class CategoryDetail(BaseModel):
     breadcrumb: List[str]
-    products: List[CategoryRead]
+    products: List[CategoryOut]

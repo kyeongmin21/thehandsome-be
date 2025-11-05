@@ -20,7 +20,7 @@ class BoardOut(BaseModel):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         json_encoders = {
             datetime: lambda v: v.strftime("%Y-%m-%d %H:%M")  # 원하는 포맷
         }
