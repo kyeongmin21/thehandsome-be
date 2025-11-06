@@ -25,7 +25,7 @@ def get_board(board_id: int, db: Session = Depends(get_db)):
 
 
 # POST: 게시글 작성
-@router.post("/create", response_model=BoardOut)
+@router.post("", response_model=BoardOut)
 def create_board(board: BoardCreate, db: Session = Depends(get_db)):
     new_board = Board(
         title=board.title,
@@ -40,7 +40,7 @@ def create_board(board: BoardCreate, db: Session = Depends(get_db)):
 
 
 # PUT: 게시글 수정
-@router.put("/edit/{board_id}", response_model=BoardOut)
+@router.put("/{board_id}", response_model=BoardOut)
 def update_board(board_id: int, update: BoardUpdate, db: Session = Depends(get_db)):
     board = db.query(Board).filter(Board.id == board_id).first()
     if not board:

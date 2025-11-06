@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="회원가입 - user 생성">
+    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="로그인 - JWT">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/boards.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/boards.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/core.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +34,16 @@
     "assignee": "kyeongmin21"
   }
 }]]></component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="로그인 API" />
+        <option name="rewordedMessage" value="로그인 - API, JWT" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="3b265532e65fc14adbd6b273f23b8c7ad0ac14e6" />
+  </component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/kyeongmin21/thehandsome-be.git",
@@ -77,10 +82,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/api/auth" />
+      <recent name="$PROJECT_DIR$/app/core" />
       <recent name="$PROJECT_DIR$/app/models" />
       <recent name="$PROJECT_DIR$/app/schemas" />
       <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/app/api" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -156,7 +162,39 @@
       <option name="project" value="LOCAL" />
       <updated>1762329028168</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="회원가입 - 추가필드 수정(소문자), 중복체크">
+      <option name="closed" value="true" />
+      <created>1762392148372</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762392148372</updated>
+    </task>
+    <task id="LOCAL-00009" summary="로그인 API">
+      <option name="closed" value="true" />
+      <created>1762396398451</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762396398451</updated>
+    </task>
+    <task id="LOCAL-00010" summary="api 주소변경">
+      <option name="closed" value="true" />
+      <created>1762403641196</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1762403641196</updated>
+    </task>
+    <task id="LOCAL-00011" summary="로그인 - JWT">
+      <option name="closed" value="true" />
+      <created>1762411829658</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762411829659</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +238,12 @@
     <MESSAGE value="DB 연결" />
     <MESSAGE value="category api create" />
     <MESSAGE value="회원가입 - user 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="회원가입 - user 생성" />
+    <MESSAGE value="회원가입 - 추가필드 수정(소문자), 중복체크" />
+    <MESSAGE value="로그인 API" />
+    <MESSAGE value="api 주소변경" />
+    <MESSAGE value="로그인 - JWT" />
+    <MESSAGE value="로그인 - API, JWT" />
+    <option name="LAST_COMMIT_MESSAGE" value="로그인 - API, JWT" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -256,14 +299,19 @@
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/models/user.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="30" />
+          <url>file://$PROJECT_DIR$/app/api/auth/login.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/models/user.py</url>
+          <url>file://$PROJECT_DIR$/app/api/auth/login.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/auth/login.py</url>
           <line>43</line>
-          <option name="timeStamp" value="33" />
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

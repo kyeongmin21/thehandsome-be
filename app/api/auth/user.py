@@ -26,17 +26,17 @@ def get_users(db: Session = Depends(get_db)):
 
 
 # POST: 사용자 생성
-@router.post("/create", response_model=UserOut)
+@router.post("", response_model=UserOut)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     errors = []
 
-    # 아이디 중복 체크
+    # 중복 체크
     if db.query(User).filter(User.user_id == user.user_id).first():
         errors.append({"field": "user_id", "code": "USER_ID_TAKEN"})
-
-    # 이메일 중복 체크
     if db.query(User).filter(User.email == user.email).first():
         errors.append({"field": "email", "code": "EMAIL_TAKEN"})
+    if db.query(User).filter(User.phone == user.phone).first():
+        errors.append({"field": "phone", "code": "PHONE_TAKEN"})
 
     # 에러 있으면 리스트로 반환
     if errors:
@@ -62,4 +62,6 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db.commit() # DB에 변경사항 반영 (저장)
     db.refresh(new_user)
     return new_user
+
+
 

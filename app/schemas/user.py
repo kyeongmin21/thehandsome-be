@@ -2,7 +2,6 @@ from pydantic import BaseModel, Field, EmailStr
 from typing import Optional
 from app.models.user import UserRole, LoginType, MembershipGrade
 
-
 # 1. 회원가입 요청 데이터 (클라이언트 -> 서버)
 class UserCreate(BaseModel):
     name: str = Field(..., description="사용자 이름")
@@ -39,3 +38,4 @@ class UserOut(BaseModel):
     class Config:
         # SQLAlchemy 모델을 Pydantic으로 변환할 때 필요합니다.
         from_attributes = True
+
