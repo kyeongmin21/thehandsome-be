@@ -7,7 +7,6 @@ from datetime import datetime
 
 router = APIRouter()
 
-summary="[상품] 새로운 상품 등록",
 # GET: 전체 상품 조회
 @router.get("", response_model=list[ProductOut], summary="[상품] 새로운 상품 등록")
 def get_products(db: Session = Depends(get_db)):

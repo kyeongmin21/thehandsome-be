@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Enum, String, Boolean, DateTime, func
 from app.database import Base
-import enum
+import enum, string, secrets
 
 class UserRole(enum.Enum):
     admin = "admin"
@@ -17,12 +17,17 @@ class MembershipGrade(enum.Enum):
     gold = "gold"
     vip = "vip"
 
+def generate_client_id(length: int = 10) -> str:
+    alphabet = string.ascii_lowercase + string.digits
+    return ''.join(secrets.choice(alphabet) for _ in range(length))
+
 
 # --- User 모델 정의 ---
 class User(Base):
     __tablename__ = "users"
 
     # 필수 필드
+    ci = Column(String, unique=True, default=generate_client_id, nullable=False)
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(String, unique=True, index=True, nullable=False)
     name = Column(String, nullable=False)

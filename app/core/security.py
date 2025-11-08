@@ -1,6 +1,6 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
-from jose import jwt
+from jose import jwt, JWTError
 from passlib.context import CryptContext
 import uuid, os
 
@@ -60,3 +60,16 @@ def create_refresh_token(data: dict, expires_delta: timedelta | None = None) -> 
         "typ": "refresh"
     })
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+# 토큰 디코딩 함수
+def decode_jwt_token(token: str) -> dict:
+    """
+    JWT 토큰 디코딩
+    - 유효하지 않거나 만료되면 예외 발생
+    - 정상일 경우 payload(dict) 반환
+    """
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except JWTError as e:
+        raise ValueError("Invalid token") from e

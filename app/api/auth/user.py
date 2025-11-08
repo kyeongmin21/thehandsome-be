@@ -1,20 +1,19 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from starlette import status
 from starlette.responses import JSONResponse
-from app.database import get_db
 from passlib.context import CryptContext
+
+from app.database import get_db
 from app.models.user import User
-from app.schemas.user import UserCreate, UserOut
+from app.schemas.user import UserCreate, UserUpdate, UserOut
+
+from app.utils.ci import generate_ci
 
 router = APIRouter()
 
 # 비밀번호 해싱 함수 정의
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    bcrypt__ident="2b",
-    deprecated="auto"
-)
+pwd_context = CryptContext( schemes=["bcrypt"], bcrypt__ident="2b", deprecated="auto")
 
 def hash_password(password: str) -> str:
     return pwd_context.hash(password)
@@ -25,7 +24,7 @@ def get_users(db: Session = Depends(get_db)):
     return db.query(User).all()
 
 
-# POST: 사용자 생성
+# POST (Create) : 회원가입
 @router.post("", response_model=UserOut)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     errors = []
@@ -46,8 +45,10 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
         )
 
     hashed_pw = hash_password(user.password)
+    client_ci = generate_ci()
 
     new_user = User(
+        ci=client_ci,
         user_id=user.user_id,
         name=user.name,
         email=user.email,
@@ -55,13 +56,22 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
         phone=user.phone,
         role=user.role,
         login_type=user.login_type,
-        membership_grade=user.membership_grade
+        membership_grade=user.membership_grade,
+        address=user.address,
+        marketing_agree=user.marketing_agree,
+        birth_date=user.birth_date
     )
 
     db.add(new_user)
     db.commit() # DB에 변경사항 반영 (저장)
     db.refresh(new_user)
     return new_user
+
+
+
+
+
+
 
 
 
