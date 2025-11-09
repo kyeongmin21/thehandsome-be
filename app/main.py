@@ -7,6 +7,8 @@ from app.api.auth.user import router as join_router
 from app.api.auth.login import router as login_router
 from app.api.auth.refresh import router as refresh_router
 from app.api.auth.mypage import router as mypage_router
+from dotenv import load_dotenv
+load_dotenv()  # .env 파일 읽어서 os.environ에 반영
 
 app = FastAPI()
 

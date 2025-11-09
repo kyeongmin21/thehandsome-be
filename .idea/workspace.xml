@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="로그인 - JWT">
-      <change afterPath="$PROJECT_DIR$/app/api/auth/mypage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/ci.py" afterDir="false" />
+    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="ci 추가, 비밀번호 확인 api 생성">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/auth/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/products.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/products.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/security.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/auth/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/auth/mypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/mypage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762411829659</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ci 추가, 비밀번호 확인 api 생성">
+      <option name="closed" value="true" />
+      <created>1762593732054</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1762593732055</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +253,8 @@
     <MESSAGE value="api 주소변경" />
     <MESSAGE value="로그인 - JWT" />
     <MESSAGE value="로그인 - API, JWT" />
-    <option name="LAST_COMMIT_MESSAGE" value="로그인 - API, JWT" />
+    <MESSAGE value="ci 추가, 비밀번호 확인 api 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="ci 추가, 비밀번호 확인 api 생성" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -331,9 +335,9 @@
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="56" />
+          <url>file://$PROJECT_DIR$/app/api/auth/login.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

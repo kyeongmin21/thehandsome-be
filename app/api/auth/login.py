@@ -23,13 +23,13 @@ def login(user: UserLogin, response: Response, db: Session = Depends(get_db)):
     if not db_user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail={"code": "NO_ID"}
+            detail=[{"field": "user_id", "code": "NO_ID"}]
         )
 
     if not verify_password(user.password, db_user.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail={"code": "INVALID_PASSWORD"}
+            detail=[{"field": "password", "code": "INVALID_PASSWORD"}]
         )
 
     # JWT 발급
@@ -55,8 +55,3 @@ def login(user: UserLogin, response: Response, db: Session = Depends(get_db)):
             "user_id": db_user.user_id,
         }
     }
-
-
-
-
-

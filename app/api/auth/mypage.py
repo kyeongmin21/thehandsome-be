@@ -31,16 +31,18 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 @router.post("/verify-password", response_model=PasswordCheckResponse,  summary="비밀번호 확인")
 def verify_user_password(
     req: PasswordCheckRequest,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    """
-    현재 로그인한 사용자가 입력한 비밀번호가 맞는지 확인
-    """
+
     if verify_password(req.password, current_user.password):
+        # 비밀번호 일치: 200 OK와 함께 verified=True 반환
         return PasswordCheckResponse(verified=True)
     else:
-        return PasswordCheckResponse(verified=False)
+        # 비밀번호 불일치: 401 Unauthorized 에러 발생
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect password"
+        )
 
 
 
