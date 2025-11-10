@@ -66,12 +66,3 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db.commit() # DB에 변경사항 반영 (저장)
     db.refresh(new_user)
     return new_user
-
-
-
-
-
-
-
-
-

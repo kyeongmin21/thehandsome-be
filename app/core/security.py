@@ -1,6 +1,6 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
-from jose import jwt, JWTError
+from jose import jwt, JWTError, ExpiredSignatureError
 from passlib.context import CryptContext
 import uuid, os
 
@@ -71,5 +71,7 @@ def decode_jwt_token(token: str) -> dict:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
+    except ExpiredSignatureError:
+        raise ValueError("Token has expired")
     except JWTError as e:
         raise ValueError("Invalid token") from e

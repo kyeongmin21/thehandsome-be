@@ -13,7 +13,7 @@ from app.core.security import decode_jwt_token  # JWT 토큰 디코딩 함수
 router = APIRouter()
 
 # /token 경로에서 로그인 시 토큰 발급
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") # <-- 이 부분이 헤더 사용을 기본으로 함
 
 
 # 현재 로그인 사용자 가져오기
@@ -41,7 +41,7 @@ def verify_user_password(
         # 비밀번호 불일치: 401 Unauthorized 에러 발생
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect password"
+            detail=[{"field": "password", "code": "INVALID_PASSWORD"}]
         )
 
 

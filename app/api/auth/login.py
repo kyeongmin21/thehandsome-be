@@ -12,7 +12,7 @@ router = APIRouter()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-@router.post("", response_model=TokenResponse)
+@router.post("", response_model=TokenResponse, summary="로그인")
 def login(user: UserLogin, response: Response, db: Session = Depends(get_db)):
     db_user = (
         db.query(User)
@@ -36,14 +36,26 @@ def login(user: UserLogin, response: Response, db: Session = Depends(get_db)):
     access_token = create_access_token(data={"sub": db_user.user_id})
     refresh_token = create_refresh_token(data={"sub": str(db_user.user_id)})
 
-    # 리프레시 토큰은 HttpOnly, Secure 쿠키로 클라이언트에 설정 (JS에서 접근 불가)
+    # 서버/미들웨어 체크용
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,    # JS에서 접근 불가 → 보안 강화
+        secure=False,     # 로컬 테스트 시 False로 변경 가능
+        max_age=60 * 60,  # 예: 1시간
+        path = "/",       # 모든 경로에서 쿠키 사용 가능하도록 설정
+        samesite = "Lax"
+    )
+
+    # 리프레시 토큰은 HttpOnly, Secure 쿠키로 클라이언트에 설정 (JS에서 접근 불가): 장기 인증/재발급용
     response.set_cookie(
         key="refresh_token",
         value=refresh_token,
         httponly=True,
-        secure=True,    # HTTPS 환경에서만 전송: secure=True일 경우 로컬 http에서 안 내려올 수 있음 → secure=False로 테스트
-        samesite="lax",  # 또는 "strict" / "none" (도메인/요구에 따라) CSRF 방어에 도움
-        max_age=30 * 24 * 3600
+        secure=False,    # HTTPS 환경에서만 전송: secure=True일 경우 로컬 http에서 안 내려올 수 있음 → secure=False로 테스트
+        max_age=30 * 24 * 3600,
+        path="/",
+        samesite="Lax"
     )
 
     return {

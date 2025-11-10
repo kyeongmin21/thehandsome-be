@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="ci 추가, 비밀번호 확인 api 생성">
+    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="로그인 오류처리 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/auth/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/auth/logout.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/logout.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/auth/mypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/mypage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/auth/refresh.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/refresh.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/auth/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/security.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762593732055</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="로그인 오류처리 수정">
+      <option name="closed" value="true" />
+      <created>1762650646425</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1762650646426</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,19 +266,20 @@
     <MESSAGE value="로그인 - JWT" />
     <MESSAGE value="로그인 - API, JWT" />
     <MESSAGE value="ci 추가, 비밀번호 확인 api 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="ci 추가, 비밀번호 확인 api 생성" />
+    <MESSAGE value="로그인 오류처리 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="로그인 오류처리 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main.py</url>
-          <line>2</line>
+          <line>3</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main.py</url>
-          <line>3</line>
+          <line>4</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -336,8 +349,53 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/api/auth/login.py</url>
-          <line>31</line>
-          <option name="timeStamp" value="58" />
+          <line>51</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/auth/login.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/main.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/core/security.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/main.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
+          <line>27</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/core/security.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="72" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

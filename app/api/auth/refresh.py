@@ -8,7 +8,7 @@ from app.schemas.login import TokenResponse, UserInfo
 router = APIRouter()
 
 
-@router.post("", response_model=TokenResponse)
+@router.post("", response_model=TokenResponse, summary="리프레시 토큰")
 def refresh_token_endpoint(refresh_token: Optional[str] = Cookie(None)):
     if not refresh_token:
         raise HTTPException(status_code=401, detail="No refresh token")
