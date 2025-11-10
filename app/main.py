@@ -11,6 +11,7 @@ from app.api.auth.logout import router as logout_router
 from app.api.auth.refresh import router as refresh_router
 
 from app.api.auth.mypage import router as mypage_router
+from app.api.auth.find import router as find_router
 
 from dotenv import load_dotenv
 load_dotenv()  # .env 파일 읽어서 os.environ에 반영
@@ -43,3 +44,6 @@ app.include_router(logout_router, prefix="/logout", tags=["로그아웃"] )
 app.include_router(refresh_router, prefix="/refresh", tags=["로그인"] )
 
 app.include_router(mypage_router, prefix="/mypage", tags=["마이페이지"] )
+
+
+app.include_router(find_router, prefix="/find", tags=["찾기"] )

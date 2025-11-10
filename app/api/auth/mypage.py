@@ -1,7 +1,8 @@
-from fastapi import Depends, APIRouter, HTTPException
+from fastapi import Depends, APIRouter, HTTPException, Response
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm.session import Session
 from starlette import status
+from datetime import datetime
 
 from app.api.auth.user import hash_password
 from app.database import get_db
@@ -23,12 +24,22 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         user = db.query(User).filter(User.user_id == payload.get("sub")).first()
         if not user:
             raise HTTPException(status_code=401, detail="Invalid authentication")
+        if not user.is_active:
+            raise HTTPException(status_code=401, detail="Inactive user")
         return user
     except Exception:
         raise HTTPException(status_code=401, detail="Invalid token")
 
 
-@router.post("/verify-password", response_model=PasswordCheckResponse,  summary="비밀번호 확인")
+
+# 내 정보 조회
+@router.get("/me", response_model=UserOut, summary="내 정보 조회")
+def get_my_info(current_user: User = Depends(get_current_user)):
+    return current_user
+
+
+# 마이페이지 : 개인정보 변경시 본인 확인용
+@router.post("/verify-password", response_model=PasswordCheckResponse, summary="개인정보 변경시 본인 확인용")
 def verify_user_password(
     req: PasswordCheckRequest,
     current_user: User = Depends(get_current_user)
@@ -45,20 +56,14 @@ def verify_user_password(
         )
 
 
-
 # PUT (Update): 자기 정보 수정
-@router.put("/{user_id}", response_model=UserOut, summary="자기 정보 수정")
+@router.put("/me", response_model=UserOut, summary="자기 정보 수정")
 def update_user(
-        user_id: str,
         user_update: UserUpdate,
         db: Session = Depends(get_db),
         current_user: User = Depends(get_current_user)
 ):
-    # 자기 정보만 수정 가능
-    if current_user.user_id != user_id:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You can only update your own account")
-
-    db_user = db.query(User).filter(User.user_id == user_id).first()
+    db_user = db.query(User).filter(User.user_id == current_user.user_id).first()
     if not db_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
 
@@ -74,3 +79,25 @@ def update_user(
     db.commit()
     db.refresh(db_user)
     return db_user
+
+# DELETE 탈퇴하기 : 비활성처리
+@router.delete("/me", status_code=status.HTTP_200_OK, summary="회원 탈퇴(is_active 비활성화)")
+def deactivate_user(
+    response: Response,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    db_user = db.query(User).filter(User.user_id == current_user.user_id).first()
+    if not db_user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
+    db_user.is_active = False
+    db_user.deleted_at = datetime.utcnow()
+
+    db.commit()
+    db.refresh(db_user)
+
+    response.delete_cookie(key="access_token")
+    response.delete_cookie(key="refresh_token")
+
+    return {"detail": "User deactivated successfully"}

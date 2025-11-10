@@ -41,6 +41,7 @@ class User(Base):
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
     is_active = Column(Boolean, default=True)
+    deleted_at = Column(DateTime, nullable=True)
     birth_date = Column(DateTime, nullable=True)
     role = Column(Enum(UserRole), default=UserRole.client, nullable=False)
     login_type = Column(Enum(LoginType), default=LoginType.general, nullable=False)
