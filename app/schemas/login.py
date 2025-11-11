@@ -10,6 +10,7 @@ class UserLogin(BaseModel):
 class UserInfo(BaseModel):
     user_id: str
     name: Optional[str] = None
+    role: Optional[str] = None
 
 
 # 로그인 및 토큰 재발급 응답 스키마

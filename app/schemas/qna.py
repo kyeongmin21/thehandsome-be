@@ -27,8 +27,8 @@ class QnaResponse(BaseModel):
     title: str
     content: str
     answer: Optional[str]
-    admin_id: Optional[int]
-    author_id: int
+    admin_id: Optional[str] = None
+    author_id: str
     status: QnaStatus
     status_label: Optional[str] = None
     created_at: datetime

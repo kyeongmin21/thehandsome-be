@@ -65,5 +65,6 @@ def login(user: UserLogin, response: Response, db: Session = Depends(get_db)):
         "user": {
             "name": getattr(db_user, "name", None),
             "user_id": db_user.user_id,
+            "role": db_user.role,
         }
     }

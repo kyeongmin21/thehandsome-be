@@ -26,16 +26,12 @@ class Qna(Base):
 
     # 관리자 답변 관련
     answer = Column(Text, nullable=True)
-    admin_id = Column(Integer, ForeignKey("users.id"), nullable=True)
-    admin = relationship("User", foreign_keys=[admin_id])  # 답변한 관리자
+    admin_id = Column(String, ForeignKey("users.user_id"), nullable=True)
+    admin = relationship("User", foreign_keys=[admin_id], back_populates="qna")
 
     # 작성자
-    author_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    author = relationship(
-        "User",
-        foreign_keys=[author_id],
-        back_populates="qna"  # User 모델에서 qna와 매칭
-    )
+    author_id = Column(String, ForeignKey("users.user_id"), nullable=False)
+    author = relationship( "User", foreign_keys=[author_id], back_populates="qna")
 
     status = Column(Enum(QnaStatus), default=QnaStatus.pending)
     created_at = Column(DateTime, default=datetime.utcnow)
