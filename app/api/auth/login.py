@@ -33,7 +33,7 @@ def login(user: UserLogin, response: Response, db: Session = Depends(get_db)):
         )
 
     # JWT 발급
-    access_token = create_access_token(data={"sub": db_user.user_id})
+    access_token = create_access_token(data={"sub": str(db_user.user_id)})
     refresh_token = create_refresh_token(data={"sub": str(db_user.user_id)})
 
     # 서버/미들웨어 체크용

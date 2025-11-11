@@ -9,28 +9,32 @@ from app.api.auth.user import router as join_router
 from app.api.auth.login import router as login_router
 from app.api.auth.logout import router as logout_router
 from app.api.auth.refresh import router as refresh_router
+from app.api.auth.find import router as find_router
 
 from app.api.auth.mypage import router as mypage_router
-from app.api.auth.find import router as find_router
+from app.api.qna import router as qna_router
+
 
 from dotenv import load_dotenv
 load_dotenv()  # .env 파일 읽어서 os.environ에 반영
 
 app = FastAPI()
 
+
+# 1. Middleware 등록 (무조건 라우터 등록 전에!)
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000", # TODO: 배포 후에는 실제 프론트엔드 도메인도 추가해야 합니다.
+]
+
 # CORS 설정 (Next.js에서 호출 가능하게)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        # TODO: 배포 후에는 실제 프론트엔드 도메인도 추가해야 합니다.
-    ],
+    allow_origins=["*"],  # 개발용
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-
 )
 
 # 라우터 등록
@@ -42,8 +46,7 @@ app.include_router(join_router, prefix="/join", tags=["회원가입"])
 app.include_router(login_router, prefix="/login", tags=["로그인"] )
 app.include_router(logout_router, prefix="/logout", tags=["로그아웃"] )
 app.include_router(refresh_router, prefix="/refresh", tags=["로그인"] )
+app.include_router(find_router, prefix="/find", tags=["찾기"] )
 
 app.include_router(mypage_router, prefix="/mypage", tags=["마이페이지"] )
-
-
-app.include_router(find_router, prefix="/find", tags=["찾기"] )
+app.include_router(qna_router, prefix="/mypage", tags=["마이페이지 - 1:1 문의"] )

@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, Enum, String, Boolean, DateTime, func
 from app.database import Base
+from sqlalchemy.orm import relationship
 import enum, string, secrets
+from app.models.qna import Qna
 
 class UserRole(enum.Enum):
     admin = "admin"
@@ -47,3 +49,8 @@ class User(Base):
     login_type = Column(Enum(LoginType), default=LoginType.general, nullable=False)
     membership_grade = Column(Enum(MembershipGrade), default=MembershipGrade.family, nullable=False)
 
+    qna = relationship(
+        "Qna",
+        back_populates="author",      # Qna.author와 연결
+        foreign_keys=[Qna.author_id]  # 어떤 FK를 기준으로 매핑할지 명시
+    )

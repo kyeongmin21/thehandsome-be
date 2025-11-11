@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="로그인, 로그아웃 API 수정">
-      <change afterPath="$PROJECT_DIR$/app/api/auth/find.py" afterDir="false" />
+    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="아이디 찾기 api 추가">
+      <change afterPath="$PROJECT_DIR$/app/api/qna.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/qna.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/qna.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/auth/mypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/mypage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/auth/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.py" afterDir="false" />
     </list>
@@ -221,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762747636119</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="아이디 찾기 api 추가">
+      <option name="closed" value="true" />
+      <created>1762755480454</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1762755480454</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,7 +283,8 @@
     <MESSAGE value="ci 추가, 비밀번호 확인 api 생성" />
     <MESSAGE value="로그인 오류처리 수정" />
     <MESSAGE value="로그인, 로그아웃 API 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="로그인, 로그아웃 API 수정" />
+    <MESSAGE value="아이디 찾기 api 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="아이디 찾기 api 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -340,7 +351,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/user.py</url>
-          <line>19</line>
+          <line>21</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -365,7 +376,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main.py</url>
-          <line>29</line>
+          <line>34</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -375,7 +386,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main.py</url>
-          <line>43</line>
+          <line>47</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -389,9 +400,29 @@
           <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/core/security.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/qna.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/user.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="74" />
+          <line>51</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/qna.py</url>
+          <line>65</line>
+          <option name="timeStamp" value="80" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
