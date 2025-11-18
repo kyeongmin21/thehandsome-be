@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import List, Optional
 
 # 상품 생성용 데이터 (프론트에서 보내는 입력)
 class ProductCreate(BaseModel):
@@ -9,6 +9,7 @@ class ProductCreate(BaseModel):
     discount_rate: Optional[float] = None
     category_id: int
     brand: Optional[str] = None
+    src: Optional[str] = None
 
 # 상품 수정용 데이터
 class ProductUpdate(BaseModel):
@@ -19,17 +20,31 @@ class ProductUpdate(BaseModel):
     category_id: Optional[int] = None
     brand: Optional[str] = None
     likes: Optional[int] = None
+    src: Optional[str] = None
 
-# DB에서 가져와서 프론트로 내려줄 때
-class ProductOut(BaseModel):
+
+# 단일 상품 반환용
+class ProductItem(BaseModel):
     id: int
     name: str
     price: int
-    discount_price: Optional[int]
-    discount_rate: Optional[float]
+    discount_price: Optional[int] = None
+    discount_rate: Optional[float] = None
     category_id: int
-    brand: Optional[str]
+    brand: Optional[str] = None
     likes: int
+    src: Optional[str] = None
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        "from_attributes": True
+    }
+
+
+# 카테고리별 상품 묶음 반환용
+class ProductCategoryOut(BaseModel):
+    cate: str
+    items: List[ProductItem] = []
+
+    model_config = {
+        "from_attributes": True
+    }

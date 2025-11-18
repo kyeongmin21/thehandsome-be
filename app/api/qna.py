@@ -89,14 +89,14 @@ def update_qna(
         raise HTTPException(status_code=404, detail="QnA를 찾을 수 없습니다.")
 
     # 작성자 본인만 수정 가능
-    if qna.author_id != current_user.id:
+    if qna.author_id != current_user.user_id:
         raise HTTPException(status_code=403, detail="본인 글만 수정할 수 있습니다.")
 
     # 필드 업데이트
     if qna_request.title is not None:
         qna.title = qna_request.title
     if qna_request.content is not None:
-        qna.content = qna_request.content
+        qna.content = qna_request.contentㅋ
 
     qna.updated_at = datetime.now()
 

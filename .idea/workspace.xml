@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="[admin] qna crud">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/products.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/products.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/qna.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/qna.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/category.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/product.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +41,12 @@
   <component name="GitRewordedCommitMessages">
     <option name="commitMessagesMapping">
       <RewordedCommitMessageMapping>
-        <option name="originalMessage" value="로그인 API" />
-        <option name="rewordedMessage" value="로그인 - API, JWT" />
+        <option name="originalMessage" value="[admin] qna crud" />
+        <option name="rewordedMessage" value="[admin] qna crud" />
       </RewordedCommitMessageMapping>
     </option>
     <option name="currentCommit" value="1" />
-    <option name="onto" value="3b265532e65fc14adbd6b273f23b8c7ad0ac14e6" />
+    <option name="onto" value="837333c50a2f7b238f04d52f8f3097931d4a8bff" />
   </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -242,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762853331814</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="[admin] qna crud">
+      <option name="closed" value="true" />
+      <created>1762859158627</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1762859158627</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,6 +473,21 @@
           <url>file://$PROJECT_DIR$/app/api/qna.py</url>
           <line>140</line>
           <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/models/category.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/models/product.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/products.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="97" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

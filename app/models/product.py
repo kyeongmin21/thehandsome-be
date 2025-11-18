@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy.orm import relationship
 from app.database import Base
 
 class Product(Base):
@@ -12,3 +13,6 @@ class Product(Base):
     category_id = Column(Integer, ForeignKey("categories.id"))  # 카테고리 연결
     brand = Column(String(100))                 # 브랜드
     likes = Column(Integer, default=0)          # 좋아요 수
+    src = Column(String(1000))
+
+    category = relationship("Category", back_populates="products")
