@@ -14,6 +14,8 @@ from app.api.auth.find import router as find_router
 from app.api.auth.mypage import router as mypage_router
 from app.api.qna import router as qna_router
 
+from app.api.wishlist import router as wishlist_router
+
 
 from dotenv import load_dotenv
 load_dotenv()  # .env 파일 읽어서 os.environ에 반영
@@ -50,3 +52,5 @@ app.include_router(find_router, prefix="/find", tags=["찾기"] )
 
 app.include_router(mypage_router, prefix="/mypage", tags=["마이페이지"] )
 app.include_router(qna_router, prefix="/mypage", tags=["마이페이지 - 1:1 문의"] )
+
+app.include_router(wishlist_router, prefix="/wishlist", tags=["위시리스트"] )

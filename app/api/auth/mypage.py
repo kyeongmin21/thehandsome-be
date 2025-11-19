@@ -18,7 +18,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") # <-- 이 부분이 헤�
 
 
 # 현재 로그인 사용자 가져오기
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+# oauth2_scheme (즉, Authorization: Bearer <token>) 방식으로 가져옴
+def get_current_user(token: str = Depends(oauth2_scheme),
+                     db: Session = Depends(get_db)):
     try:
         payload = decode_jwt_token(token)
         user = db.query(User).filter(User.user_id == payload.get("sub")).first()

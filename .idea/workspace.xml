@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="[admin] qna crud">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/products.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/products.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/qna.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/qna.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/category.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/product.py" afterDir="false" />
+    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="위시리스트 api 개발">
+      <change beforePath="$PROJECT_DIR$/app/api/wishlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/wishlist.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +36,12 @@
   <component name="GitRewordedCommitMessages">
     <option name="commitMessagesMapping">
       <RewordedCommitMessageMapping>
-        <option name="originalMessage" value="[admin] qna crud" />
-        <option name="rewordedMessage" value="[admin] qna crud" />
+        <option name="originalMessage" value="위시리스트 api 개발" />
+        <option name="rewordedMessage" value="위시리스트 api 개발" />
       </RewordedCommitMessageMapping>
     </option>
     <option name="currentCommit" value="1" />
-    <option name="onto" value="837333c50a2f7b238f04d52f8f3097931d4a8bff" />
+    <option name="onto" value="e02638dab6a447642080373650309848422a145d" />
   </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -254,7 +249,39 @@
       <option name="project" value="LOCAL" />
       <updated>1762859158627</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="새로 들어온 신상품 API 가공 &#10;&#10;- src 이미지 추가&#10;- 프론트 목업데이터랑 일치하게 내려주기">
+      <option name="closed" value="true" />
+      <created>1763457301300</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1763457301301</updated>
+    </task>
+    <task id="LOCAL-00020" summary="product_code 추가">
+      <option name="closed" value="true" />
+      <created>1763520901765</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1763520901766</updated>
+    </task>
+    <task id="LOCAL-00021" summary="위시리스트 api 개발">
+      <option name="closed" value="true" />
+      <created>1763525201011</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1763525201012</updated>
+    </task>
+    <task id="LOCAL-00022" summary="위시리스트 api 개발">
+      <option name="closed" value="true" />
+      <created>1763527498160</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1763527498161</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +336,10 @@
     <MESSAGE value="아이디 찾기 api 추가" />
     <MESSAGE value="qna API 생성" />
     <MESSAGE value="[admin] qna crud" />
-    <option name="LAST_COMMIT_MESSAGE" value="[admin] qna crud" />
+    <MESSAGE value="새로 들어온 신상품 API 가공 &#10;&#10;- src 이미지 추가&#10;- 프론트 목업데이터랑 일치하게 내려주기" />
+    <MESSAGE value="product_code 추가" />
+    <MESSAGE value="위시리스트 api 개발" />
+    <option name="LAST_COMMIT_MESSAGE" value="위시리스트 api 개발" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -401,7 +431,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main.py</url>
-          <line>34</line>
+          <line>36</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -423,11 +453,6 @@
           <url>file://$PROJECT_DIR$/app/models/user.py</url>
           <line>51</line>
           <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/api/qna.py</url>
@@ -481,7 +506,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/product.py</url>
-          <line>17</line>
+          <line>18</line>
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
