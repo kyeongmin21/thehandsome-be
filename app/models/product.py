@@ -6,6 +6,7 @@ class Product(Base):
     __tablename__ = "products"
 
     id = Column(Integer, primary_key=True, index=True)
+    product_code = Column(String(50), unique=True, index=True)
     name = Column(String(500), nullable=False)  # 상품명
     price = Column(Integer, nullable=False)     # 원가/정가
     discount_price = Column(Integer)            # 할인 가격

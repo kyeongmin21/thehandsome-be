@@ -3,6 +3,7 @@ from typing import List, Optional
 
 # 상품 생성용 데이터 (프론트에서 보내는 입력)
 class ProductCreate(BaseModel):
+    product_code: str
     name: str
     price: int
     discount_price: Optional[int] = None
@@ -13,6 +14,7 @@ class ProductCreate(BaseModel):
 
 # 상품 수정용 데이터
 class ProductUpdate(BaseModel):
+    product_code: Optional[str] = None
     name: Optional[str] = None
     price: Optional[int] = None
     discount_price: Optional[int] = None
@@ -25,6 +27,7 @@ class ProductUpdate(BaseModel):
 
 # 단일 상품 반환용
 class ProductItem(BaseModel):
+    product_code: str
     id: int
     name: str
     price: int

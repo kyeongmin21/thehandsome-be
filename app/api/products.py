@@ -30,6 +30,7 @@ def get_products(db: Session = Depends(get_db)):
 
         grouped[first_name].append(ProductItem(
             id=p.id,
+            product_code=p.product_code,
             name=p.name,
             price=p.price,
             discount_price=p.discount_price,
@@ -48,6 +49,7 @@ def get_products(db: Session = Depends(get_db)):
 @router.post("", response_model=ProductItem, summary="상품 추가")
 def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     new_product = Product(
+        product_code=product.product_code,
         name=product.name,
         price=product.price,
         discount_price=product.discount_price,
