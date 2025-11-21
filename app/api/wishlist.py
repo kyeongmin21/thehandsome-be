@@ -1,9 +1,11 @@
-from fastapi import APIRouter, Depends, Response
+from typing import Optional
+from fastapi import APIRouter, Depends, Response, Request
 from sqlalchemy.orm import Session
 from starlette import status
 
-from app.api.auth.mypage import get_current_user
 from app.database import get_db
+from app.api.auth.mypage import get_current_user
+from app.dependencies.auth_deps import get_optional_user
 from app.models.product import Product
 from app.models.user import User
 from app.models.wishlist import WishList
@@ -56,9 +58,13 @@ def toggle_wishlist(data: WishListCreate,
         src=product.src
     )
 
-@router.get("/my", response_model=list[WishListItem], summary="내 위시리스트 전체 조회")
-def get_my_wishlist(current_user: User = Depends(get_current_user),
+@router.get("/my-wished", response_model=list[WishListItem], summary="내 위시리스트 전체 조회")
+def get_my_wishlist(current_user: Optional[User] = Depends(get_optional_user),
                     db: Session = Depends(get_db)):
+
+    if current_user is None:
+        return [] # 로그인하지 않았으므로 빈 리스트 반환
+
     user_pk_id = current_user.id
 
     # WishList와 Product 조인

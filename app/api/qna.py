@@ -96,7 +96,7 @@ def update_qna(
     if qna_request.title is not None:
         qna.title = qna_request.title
     if qna_request.content is not None:
-        qna.content = qna_request.contentㅋ
+        qna.content = qna_request.content
 
     qna.updated_at = datetime.now()
 

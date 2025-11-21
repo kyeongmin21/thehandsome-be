@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="위시리스트 api 개발">
+    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="브랜드 찜하기 api 개발">
+      <change afterPath="$PROJECT_DIR$/app/crud/crud_category.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/brandlike.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/brandlike.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/wishlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/wishlist.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,12 +39,12 @@
   <component name="GitRewordedCommitMessages">
     <option name="commitMessagesMapping">
       <RewordedCommitMessageMapping>
-        <option name="originalMessage" value="위시리스트 api 개발" />
-        <option name="rewordedMessage" value="위시리스트 api 개발" />
+        <option name="originalMessage" value="브랜드 찜하기 api 개발" />
+        <option name="rewordedMessage" value="브랜드 찜하기 api 개발" />
       </RewordedCommitMessageMapping>
     </option>
     <option name="currentCommit" value="1" />
-    <option name="onto" value="e02638dab6a447642080373650309848422a145d" />
+    <option name="onto" value="339ef9b73ad3f927a28454be27745da065a4c584" />
   </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -281,7 +284,31 @@
       <option name="project" value="LOCAL" />
       <updated>1763527498161</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="위시리스트 api 개발">
+      <option name="closed" value="true" />
+      <created>1763527992243</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1763527992243</updated>
+    </task>
+    <task id="LOCAL-00024" summary="브랜드 찜하기 api 개발">
+      <option name="closed" value="true" />
+      <created>1763716034030</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1763716034030</updated>
+    </task>
+    <task id="LOCAL-00025" summary="브랜드 찜하기 api 개발">
+      <option name="closed" value="true" />
+      <created>1763716251190</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1763716251191</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +366,8 @@
     <MESSAGE value="새로 들어온 신상품 API 가공 &#10;&#10;- src 이미지 추가&#10;- 프론트 목업데이터랑 일치하게 내려주기" />
     <MESSAGE value="product_code 추가" />
     <MESSAGE value="위시리스트 api 개발" />
-    <option name="LAST_COMMIT_MESSAGE" value="위시리스트 api 개발" />
+    <MESSAGE value="브랜드 찜하기 api 개발" />
+    <option name="LAST_COMMIT_MESSAGE" value="브랜드 찜하기 api 개발" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -363,16 +391,6 @@
           <url>file://$PROJECT_DIR$/app/database.py</url>
           <line>7</line>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/categories.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/categories.py</url>
-          <line>25</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/schemas/category.py</url>
@@ -431,7 +449,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main.py</url>
-          <line>36</line>
+          <line>38</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -513,6 +531,86 @@
           <url>file://$PROJECT_DIR$/app/api/products.py</url>
           <line>12</line>
           <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/brandlike.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/brandlike.py</url>
+          <line>43</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/brandlike.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/schemas/wishlist.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/models/brands.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/wishlist.py</url>
+          <line>61</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/wishlist.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/dependencies/auth_deps.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/wishlist.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/brandlike.py</url>
+          <line>99</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/schemas/brandlike.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/models/brandlike.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/categories.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/categories.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/categories.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="119" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

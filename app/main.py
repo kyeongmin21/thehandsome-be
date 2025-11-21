@@ -15,12 +15,14 @@ from app.api.auth.mypage import router as mypage_router
 from app.api.qna import router as qna_router
 
 from app.api.wishlist import router as wishlist_router
+from app.api.brandlike import router as brandlike_router
+from app.api.brands import router as brands_router
 
 
 from dotenv import load_dotenv
 load_dotenv()  # .env 파일 읽어서 os.environ에 반영
 
-app = FastAPI()
+app = FastAPI(title='thehansome-project', description='API documentation', version='1.0.0')
 
 
 # 1. Middleware 등록 (무조건 라우터 등록 전에!)
@@ -54,3 +56,5 @@ app.include_router(mypage_router, prefix="/mypage", tags=["마이페이지"] )
 app.include_router(qna_router, prefix="/mypage", tags=["마이페이지 - 1:1 문의"] )
 
 app.include_router(wishlist_router, prefix="/wishlist", tags=["위시리스트"] )
+app.include_router(brandlike_router, prefix="/brandlike", tags=["좋아요 브랜드"] )
+app.include_router(brands_router, prefix="/brands", tags=["브랜드 리스트"] )

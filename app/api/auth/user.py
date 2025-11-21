@@ -8,7 +8,7 @@ from app.database import get_db
 from app.models.user import User
 from app.schemas.user import UserCreate, UserUpdate, UserOut
 
-from app.utils.ci import generate_ci
+from app.dependencies.auth_deps import generate_ci
 
 router = APIRouter()
 
