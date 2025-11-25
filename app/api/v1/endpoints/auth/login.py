@@ -3,8 +3,9 @@ from fastapi import APIRouter, Depends, Response, HTTPException
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from starlette import status
+
+from app.crud.crud_user import get_user_by_id
 from app.database import get_db
-from app.models.user import User
 from app.schemas.login import UserLogin, TokenResponse
 from app.core.security import verify_password, create_access_token, create_refresh_token
 
@@ -14,11 +15,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 @router.post("", response_model=TokenResponse, summary="로그인")
 def login(user: UserLogin, response: Response, db: Session = Depends(get_db)):
-    db_user = (
-        db.query(User)
-        .filter(User.user_id == user.user_id)
-        .first()
-    )
+    db_user = get_user_by_id(db, user.user_id)
 
     if not db_user:
         raise HTTPException(

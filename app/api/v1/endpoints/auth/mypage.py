@@ -4,12 +4,13 @@ from sqlalchemy.orm.session import Session
 from starlette import status
 from datetime import datetime
 
-from app.api.auth.user import hash_password
+from app.crud.crud_user import get_user_by_id
+from app.services.service_user import hash_password
 from app.database import get_db
 from app.models.user import User
 from app.schemas.user import PasswordCheckResponse, PasswordCheckRequest, UserOut, UserUpdate
 from app.core.security import verify_password
-from app.core.security import decode_jwt_token  # JWT 토큰 디코딩 함수
+from app.core.security import decode_jwt_token
 
 router = APIRouter()
 
@@ -23,7 +24,7 @@ def get_current_user(token: str = Depends(oauth2_scheme),
                      db: Session = Depends(get_db)):
     try:
         payload = decode_jwt_token(token)
-        user = db.query(User).filter(User.user_id == payload.get("sub")).first()
+        user = get_user_by_id(db, payload.get("sub"))
         if not user:
             raise HTTPException(status_code=401, detail="Invalid authentication")
         if not user.is_active:
@@ -65,7 +66,7 @@ def update_user(
         db: Session = Depends(get_db),
         current_user: User = Depends(get_current_user)
 ):
-    db_user = db.query(User).filter(User.user_id == current_user.user_id).first()
+    db_user = get_user_by_id(db, current_user.user_id)
     if not db_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
 
@@ -89,7 +90,7 @@ def deactivate_user(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    db_user = db.query(User).filter(User.user_id == current_user.user_id).first()
+    db_user = get_user_by_id(db, current_user.user_id)
     if not db_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
 

@@ -1,22 +1,22 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.products import router as products_router
-from app.api.boards import router as boards_router
-from app.api.categories import router as categories_router
+from app.api.v1.endpoints.products import router as products_router
+from app.api.v1.endpoints.boards import router as boards_router
+from app.api.v1.endpoints.categories import router as categories_router
 
-from app.api.auth.user import router as join_router
-from app.api.auth.login import router as login_router
-from app.api.auth.logout import router as logout_router
-from app.api.auth.refresh import router as refresh_router
-from app.api.auth.find import router as find_router
+from app.api.v1.endpoints.auth.user import router as join_router
+from app.api.v1.endpoints.auth.login import router as login_router
+from app.api.v1.endpoints.auth.logout import router as logout_router
+from app.api.v1.endpoints.auth.refresh import router as refresh_router
+from app.api.v1.endpoints.auth.find import router as find_router
 
-from app.api.auth.mypage import router as mypage_router
-from app.api.qna import router as qna_router
+from app.api.v1.endpoints.auth.mypage import router as mypage_router
+from app.api.v1.endpoints.qna import router as qna_router
 
-from app.api.wishlist import router as wishlist_router
-from app.api.brandlike import router as brandlike_router
-from app.api.brands import router as brands_router
+from app.api.v1.endpoints.wishlist import router as wishlist_router
+from app.api.v1.endpoints.brandlike import router as brandlike_router
+from app.api.v1.endpoints.brands import router as brands_router
 
 
 from dotenv import load_dotenv
@@ -35,7 +35,7 @@ origins = [
 # CORS 설정 (Next.js에서 호출 가능하게)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 개발용
+    allow_origins=origins,  # 개발용
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

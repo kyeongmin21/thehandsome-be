@@ -1,15 +1,14 @@
-from __future__ import annotations
-from typing import Optional
-from fastapi import HTTPException, Cookie, APIRouter
 from jose import JWTError, jwt
+from fastapi import HTTPException
 from app.core.security import SECRET_KEY, ALGORITHM, create_access_token
-from app.schemas.login import TokenResponse, UserInfo
-
-router = APIRouter()
 
 
-@router.post("", response_model=TokenResponse, summary="리프레시 토큰")
-def refresh_token_endpoint(refresh_token: Optional[str] = Cookie(None)):
+def refresh_to_access_token(refresh_token: str) -> str:
+    """
+        리프레시 토큰으로 새 액세스 토큰 생성
+        - refresh_token: 클라이언트 쿠키에서 받은 리프레시 토큰
+        - 반환: 새 액세스 토큰 문자열
+        """
     if not refresh_token:
         raise HTTPException(status_code=401, detail="No refresh token")
 
@@ -18,15 +17,12 @@ def refresh_token_endpoint(refresh_token: Optional[str] = Cookie(None)):
         if payload.get("typ") != "refresh":
             raise HTTPException(status_code=401, detail="Invalid token type")
         user_id = payload.get("sub")
-
+        if not user_id:
+            raise HTTPException(status_code=401, detail="Token missing user info")
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid refresh token")
 
+    # 새 액세스 토큰 생성
     new_access_token = create_access_token(data={"sub": str(user_id)})
+    return new_access_token, user_id
 
-    return TokenResponse(
-        message="토큰 재발급 성공",
-        access_token=new_access_token,
-        token_type="bearer",
-        user=UserInfo(user_id=user_id)
-    )

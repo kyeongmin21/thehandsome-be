@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="브랜드 찜하기 api 개발">
-      <change afterPath="$PROJECT_DIR$/app/crud/crud_category.py" afterDir="false" />
+    <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="리팩토링 - endpoint, crud 코드 분리">
+      <change afterPath="$PROJECT_DIR$/app/services/service_qna.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/brandlike.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/brandlike.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/wishlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/wishlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/auth/refresh.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/auth/refresh.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/qna.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/qna.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/crud_qna.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/crud_qna.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/crud_refresh.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/service_refresh.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +41,12 @@
   <component name="GitRewordedCommitMessages">
     <option name="commitMessagesMapping">
       <RewordedCommitMessageMapping>
-        <option name="originalMessage" value="브랜드 찜하기 api 개발" />
-        <option name="rewordedMessage" value="브랜드 찜하기 api 개발" />
+        <option name="originalMessage" value="리팩토링 - endpoint, crud 코드 분리" />
+        <option name="rewordedMessage" value="리팩토링 - endpoint, crud, service 코드 분리" />
       </RewordedCommitMessageMapping>
     </option>
     <option name="currentCommit" value="1" />
-    <option name="onto" value="339ef9b73ad3f927a28454be27745da065a4c584" />
+    <option name="onto" value="3b9769835592687d4b34162ebf60492444bf9818" />
   </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -84,11 +86,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/services" />
+      <recent name="$PROJECT_DIR$/app/api/v1/endpoints" />
+      <recent name="$PROJECT_DIR$/app/api/v1/endpoints/auth" />
       <recent name="$PROJECT_DIR$/app/api/auth" />
       <recent name="$PROJECT_DIR$/app/core" />
-      <recent name="$PROJECT_DIR$/app/models" />
-      <recent name="$PROJECT_DIR$/app/schemas" />
-      <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -308,7 +310,79 @@
       <option name="project" value="LOCAL" />
       <updated>1763716251191</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="브랜드 찜하기 api 개발">
+      <option name="closed" value="true" />
+      <created>1764053721157</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1764053721157</updated>
+    </task>
+    <task id="LOCAL-00027" summary="브랜드 찜하기 api 개발">
+      <option name="closed" value="true" />
+      <created>1764058981714</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1764058981715</updated>
+    </task>
+    <task id="LOCAL-00028" summary="리팩토링 - endpoint, crud 코드 분리">
+      <option name="closed" value="true" />
+      <created>1764064565099</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1764064565099</updated>
+    </task>
+    <task id="LOCAL-00029" summary="리팩토링 - endpoint, crud 코드 분리">
+      <option name="closed" value="true" />
+      <created>1764066098084</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1764066098084</updated>
+    </task>
+    <task id="LOCAL-00030" summary="리팩토링 - endpoint, crud 코드 분리">
+      <option name="closed" value="true" />
+      <created>1764069050113</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1764069050113</updated>
+    </task>
+    <task id="LOCAL-00031" summary="리팩토링 - endpoint, crud 코드 분리">
+      <option name="closed" value="true" />
+      <created>1764069987612</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1764069987612</updated>
+    </task>
+    <task id="LOCAL-00032" summary="리팩토링 - endpoint, crud 코드 분리">
+      <option name="closed" value="true" />
+      <created>1764070008177</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1764070008177</updated>
+    </task>
+    <task id="LOCAL-00033" summary="리팩토링 - endpoint, crud 코드 분리">
+      <option name="closed" value="true" />
+      <created>1764070253381</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1764070253381</updated>
+    </task>
+    <task id="LOCAL-00034" summary="리팩토링 - endpoint, crud 코드 분리">
+      <option name="closed" value="true" />
+      <created>1764126079485</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1764126079485</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,7 +441,9 @@
     <MESSAGE value="product_code 추가" />
     <MESSAGE value="위시리스트 api 개발" />
     <MESSAGE value="브랜드 찜하기 api 개발" />
-    <option name="LAST_COMMIT_MESSAGE" value="브랜드 찜하기 api 개발" />
+    <MESSAGE value="리팩토링 - endpoint, crud 코드 분리" />
+    <MESSAGE value="리팩토링 - endpoint, crud, service 코드 분리" />
+    <option name="LAST_COMMIT_MESSAGE" value="리팩토링 - endpoint, crud, service 코드 분리" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -403,24 +479,9 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/boards.py</url>
-          <line>27</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/boards.py</url>
-          <line>28</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/schemas/user.py</url>
           <line>21</line>
           <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/auth/user.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/user.py</url>
@@ -433,17 +494,17 @@
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/auth/user.py</url>
-          <line>28</line>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/auth/user.py</url>
+          <line>19</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/auth/login.py</url>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/auth/login.py</url>
           <line>51</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/auth/login.py</url>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/auth/login.py</url>
           <line>40</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
@@ -473,16 +534,6 @@
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/qna.py</url>
-          <line>78</line>
-          <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/qna.py</url>
-          <line>39</line>
-          <option name="timeStamp" value="81" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/user.py</url>
           <line>33</line>
           <option name="timeStamp" value="83" />
@@ -503,18 +554,8 @@
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/qna.py</url>
-          <line>63</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/qna.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/qna.py</url>
-          <line>140</line>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/qna.py</url>
+          <line>104</line>
           <option name="timeStamp" value="91" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -528,24 +569,9 @@
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/products.py</url>
-          <line>12</line>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/products.py</url>
+          <line>11</line>
           <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/brandlike.py</url>
-          <line>59</line>
-          <option name="timeStamp" value="101" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/brandlike.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="102" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/brandlike.py</url>
-          <line>50</line>
-          <option name="timeStamp" value="103" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/schemas/wishlist.py</url>
@@ -558,33 +584,13 @@
           <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/auth/mypage.py</url>
-          <line>21</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/wishlist.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="109" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/wishlist.py</url>
-          <line>12</line>
-          <option name="timeStamp" value="111" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/dependencies/auth_deps.py</url>
           <line>35</line>
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/wishlist.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/brandlike.py</url>
-          <line>99</line>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/brandlike.py</url>
+          <line>58</line>
           <option name="timeStamp" value="114" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -598,19 +604,44 @@
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/categories.py</url>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/categories.py</url>
           <line>26</line>
           <option name="timeStamp" value="117" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/categories.py</url>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/categories.py</url>
           <line>37</line>
           <option name="timeStamp" value="118" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/categories.py</url>
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/categories.py</url>
           <line>18</line>
           <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/auth/login.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/auth/mypage.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/boards.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/brands.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="128" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/crud/crud_brandlike.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="131" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

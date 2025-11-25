@@ -2,8 +2,8 @@ from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
+from app.crud.crud_brands import get_brands
 from app.database import get_db
-from app.models.brands import Brands
 from app.schemas.brands import BrandGroup
 
 router = APIRouter()
@@ -12,7 +12,7 @@ router = APIRouter()
 # 전체 브랜드 조회
 @router.get("/list", response_model=List[BrandGroup], summary="전체 브랜드 조회")
 def get_all_brands(db: Session = Depends(get_db)):
-    brands = db.query(Brands).order_by(Brands.brand_code).all()
+    brands = get_brands(db)
 
     grouped = {}
 

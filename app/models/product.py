@@ -17,3 +17,4 @@ class Product(Base):
     src = Column(String(1000))
 
     category = relationship("Category", back_populates="products")
+    wishlist = relationship("WishList", back_populates="product")

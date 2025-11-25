@@ -1,5 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from datetime import datetime
+
+from sqlalchemy.orm import relationship
+
 from app.database import Base
 
 class WishList(Base):
@@ -9,3 +12,5 @@ class WishList(Base):
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
     product_code = Column(String(50), ForeignKey("products.product_code"), nullable=False)
     created_at = Column(DateTime, default=datetime.now)
+
+    product = relationship("Product", back_populates="wishlist")
