@@ -16,4 +16,4 @@ uvicorn==0.38.0
 sqlalchemy
 alembic
 psycopg2-binary
-pymysql
+python-dotenv
