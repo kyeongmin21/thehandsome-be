@@ -1,6 +1,6 @@
 from jose import JWTError, jwt
 from fastapi import HTTPException
-from app.core.security import SECRET_KEY, ALGORITHM, create_access_token
+from app.core.security import SECRET_KEY, ALGORITHM, create_access_token, create_refresh_token
 
 
 def refresh_to_access_token(refresh_token: str) -> str:
@@ -24,5 +24,9 @@ def refresh_to_access_token(refresh_token: str) -> str:
 
     # 새 액세스 토큰 생성
     new_access_token = create_access_token(data={"sub": str(user_id)})
-    return new_access_token, user_id
+
+    # 새 refresh_token 발급
+    new_refresh_token = create_refresh_token(data={"sub": str(user_id)})
+
+    return new_access_token, new_refresh_token, user_id
 
