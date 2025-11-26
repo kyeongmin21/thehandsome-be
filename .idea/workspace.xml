@@ -22,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,7 +65,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feature",
     "last_opened_file_path": "/Users/min/Pycharm/thehandsome-be",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -377,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764126079485</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="requirements.txt 수정">
+      <option name="closed" value="true" />
+      <created>1764135373288</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1764135373288</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,7 +457,8 @@
     <MESSAGE value="브랜드 찜하기 api 개발" />
     <MESSAGE value="리팩토링 - endpoint, crud 코드 분리" />
     <MESSAGE value="리팩토링 - endpoint, crud, service 코드 분리" />
-    <option name="LAST_COMMIT_MESSAGE" value="리팩토링 - endpoint, crud, service 코드 분리" />
+    <MESSAGE value="requirements.txt 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="requirements.txt 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -648,6 +657,16 @@
           <url>file://$PROJECT_DIR$/app/crud/crud_brandlike.py</url>
           <line>6</line>
           <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/qna.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/main.py</url>
+          <line>51</line>
+          <option name="timeStamp" value="140" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
