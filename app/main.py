@@ -30,6 +30,7 @@ origins = [
     "http://localhost",
     "http://localhost:3000",
     "http://127.0.0.1:3000", # TODO: 배포 후에는 실제 프론트엔드 도메인도 추가해야 합니다.
+    "https://thehandsome-fe.vercel.app"
 ]
 
 # CORS 설정 (Next.js에서 호출 가능하게)
