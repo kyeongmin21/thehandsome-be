@@ -15,5 +15,6 @@ typing_extensions==4.15.0
 uvicorn==0.38.0
 sqlalchemy
 alembic
-psycopg2-binary
 python-dotenv
+pymysql
+psycopg2

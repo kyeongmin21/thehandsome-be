@@ -1,27 +1,35 @@
 # database.py
 import os
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-# .env 파일 읽기
-load_dotenv()  # <- 여기서 환경 변수 로드
+# MySQL 연결 정보
+# MYSQL_USER = "fastapi_user"
+# MYSQL_PASSWORD = "1204"
+# MYSQL_HOST = "localhost"
+# MYSQL_PORT = "3306"
+# MYSQL_DB = "thehandsome"
 
-# 환경 변수에서 DB 정보 읽기
-DB_USER = os.environ.get("DB_USER")
-DB_PASSWORD = os.environ.get("DB_PASSWORD")
-DB_HOST = os.environ.get("DB_HOST")
-DB_PORT = os.environ.get("DB_PORT", 5432)
-DB_NAME = os.environ.get("DB_NAME")
+# Railway 환경변수 가져오기
+MYSQL_USER = os.getenv("MYSQLUSER")
+MYSQL_PASSWORD = os.getenv("MYSQLPASSWORD")
+MYSQL_HOST = os.getenv("MYSQLHOST")
+MYSQL_PORT = os.getenv("MYSQLPORT")
+MYSQL_DB = os.getenv("MYSQLDATABASE")
 
-# PostgreSQL SQLAlchemy URL
-SQLALCHEMY_DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+if not MYSQL_HOST:
+    raise ValueError("❌ Railway MySQL 환경변수가 설정되지 않았습니다.")
 
+# SQLAlchemy 데이터베이스 URL
+SQLALCHEMY_DATABASE_URL = (
+    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
+)
 # SQLAlchemy 엔진 생성
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
-    echo=True,  # SQL 로그 출력
-    future=True
+    echo=True,   # 실행되는 SQL 로그 출력 (개발용)
+    future=True  # SQLAlchemy 2.0 스타일
 )
 
 # 세션 생성기
@@ -31,12 +39,15 @@ SessionLocal = sessionmaker(
     bind=engine
 )
 
-# Base 클래스
+# Base 클래스: 모델 정의 시 상속
 Base = declarative_base()
 
-
-# FastAPI DB 세션 Dependency
+# FastAPI에서 DB 세션 가져오기
 def get_db():
+    """
+    Dependency로 사용:
+    요청마다 새로운 DB 세션을 생성하고 사용 후 종료
+    """
     db = SessionLocal()
     try:
         yield db
