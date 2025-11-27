@@ -12,19 +12,19 @@ from sqlalchemy.orm import sessionmaker
 # MYSQL_DB = "thehandsome"
 
 # Railway 환경변수 가져오기
-MYSQL_USER = os.getenv("MYSQLUSER")
-MYSQL_PASSWORD = os.getenv("MYSQLPASSWORD")
-MYSQL_HOST = os.getenv("MYSQLHOST")
-MYSQL_PORT = os.getenv("MYSQLPORT")
-MYSQL_DB = os.getenv("MYSQLDATABASE")
+DB_USER = os.getenv("PGUSER")
+DB_PASSWORD = os.getenv("PGPASSWORD")
+DB_HOST = os.getenv("PGHOST")
+DB_PORT = os.getenv("PGPORT")
+DB_NAME = os.getenv("PGDATABASE")
 
-if not MYSQL_HOST:
-    raise ValueError("❌ Railway MySQL 환경변수가 설정되지 않았습니다.")
 
 # SQLAlchemy 데이터베이스 URL
 SQLALCHEMY_DATABASE_URL = (
-    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
+    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
+
+
 # SQLAlchemy 엔진 생성
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
