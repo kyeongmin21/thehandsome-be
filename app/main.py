@@ -18,10 +18,6 @@ from app.api.v1.endpoints.wishlist import router as wishlist_router
 from app.api.v1.endpoints.brandlike import router as brandlike_router
 from app.api.v1.endpoints.brands import router as brands_router
 
-
-from dotenv import load_dotenv
-load_dotenv()  # .env 파일 읽어서 os.environ에 반영
-
 app = FastAPI(title='thehansome-project', description='API documentation', version='1.0.0')
 
 
