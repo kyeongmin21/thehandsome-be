@@ -11,7 +11,7 @@ class Product(Base):
     price = Column(Integer, nullable=False)     # 원가/정가
     discount_price = Column(Integer)            # 할인 가격
     discount_rate = Column(Float)               # 할인율 (%)
-    category_id = Column(Integer, ForeignKey("categories.id"))  # 카테고리 연결
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)  # 카테고리 연결
     brand = Column(String(100))                 # 브랜드
     likes = Column(Integer, default=0)          # 좋아요 수
     src = Column(String(1000))

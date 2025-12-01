@@ -8,5 +8,5 @@ class BrandLike(Base):
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
-    brand_code = Column(String(100), ForeignKey("brands.brand_code"), nullable=False)
-    created_at = Column(DateTime, default=datetime.now)
+    brand_code = Column(String(100), nullable=False)
+    created_at = Column(DateTime(timezone=True), default=datetime.now)

@@ -7,8 +7,8 @@ import uuid, os
 # ⚠️ 배포 시 반드시 환경 변수로 설정!
 SECRET_KEY = os.getenv("SECRET_KEY", "dev_secret_key_change_me")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60  # 토큰 유효 시간 (1시간)
-REFRESH_TOKEN_EXPIRE_DAYS = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 30  # 토큰 유효 시간 (30분)
+REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 
 # 비밀번호 암호화 컨텍스트

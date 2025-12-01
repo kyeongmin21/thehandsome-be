@@ -23,6 +23,8 @@ def get_top_level_categories(db: Session) -> List[Category]:
 
 def find_top_category(category: Category) -> Category:
     """주어진 카테고리의 최상위 부모 카테고리를 재귀적으로 찾습니다."""
+    if category is None:
+        return None
     top_cate = category
     while top_cate.parent:
         top_cate = top_cate.parent
