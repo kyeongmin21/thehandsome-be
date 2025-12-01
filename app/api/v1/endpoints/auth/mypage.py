@@ -1,38 +1,17 @@
-from fastapi import Depends, APIRouter, HTTPException, Response
-from fastapi.security import OAuth2PasswordBearer
-from sqlalchemy.orm.session import Session
 from starlette import status
 from datetime import datetime
+from sqlalchemy.orm.session import Session
+from fastapi import Depends, APIRouter, HTTPException, Response, Request
 
 from app.crud.crud_user import get_user_by_id
+from app.dependencies.auth_deps import get_current_user
 from app.services.service_user import hash_password
 from app.database import get_db
 from app.models.user import User
 from app.schemas.user import PasswordCheckResponse, PasswordCheckRequest, UserOut, UserUpdate
 from app.core.security import verify_password
-from app.core.security import decode_jwt_token
 
 router = APIRouter()
-
-# /token 경로에서 로그인 시 토큰 발급
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") # <-- 이 부분이 헤더 사용을 기본으로 함
-
-
-# 현재 로그인 사용자 가져오기
-# oauth2_scheme (즉, Authorization: Bearer <token>) 방식으로 가져옴
-def get_current_user(token: str = Depends(oauth2_scheme),
-                     db: Session = Depends(get_db)):
-    try:
-        payload = decode_jwt_token(token)
-        user = get_user_by_id(db, payload.get("sub"))
-        if not user:
-            raise HTTPException(status_code=401, detail="Invalid authentication")
-        if not user.is_active:
-            raise HTTPException(status_code=401, detail="Inactive user")
-        return user
-    except Exception:
-        raise HTTPException(status_code=401, detail="Invalid token")
-
 
 
 # 내 정보 조회
@@ -42,12 +21,13 @@ def get_my_info(current_user: User = Depends(get_current_user)):
 
 
 # 마이페이지 : 개인정보 변경시 본인 확인용
-@router.post("/verify-password", response_model=PasswordCheckResponse, summary="개인정보 변경시 본인 확인용")
+@router.post("/verify-password",
+             response_model=PasswordCheckResponse,
+             summary="개인정보 변경시 본인 확인용")
 def verify_user_password(
-    req: PasswordCheckRequest,
-    current_user: User = Depends(get_current_user)
+        req: PasswordCheckRequest,
+        current_user: User = Depends(get_current_user)
 ):
-
     if verify_password(req.password, current_user.password):
         # 비밀번호 일치: 200 OK와 함께 verified=True 반환
         return PasswordCheckResponse(verified=True)
@@ -83,12 +63,15 @@ def update_user(
     db.refresh(db_user)
     return db_user
 
+
 # DELETE 탈퇴하기 : 비활성처리
-@router.delete("/me", status_code=status.HTTP_200_OK, summary="회원 탈퇴(is_active 비활성화)")
+@router.delete("/me",
+               status_code=status.HTTP_200_OK,
+               summary="회원 탈퇴(is_active 비활성화)")
 def deactivate_user(
-    response: Response,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+        response: Response,
+        db: Session = Depends(get_db),
+        current_user: User = Depends(get_current_user)
 ):
     db_user = get_user_by_id(db, current_user.user_id)
     if not db_user:
