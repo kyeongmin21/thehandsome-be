@@ -1,7 +1,6 @@
-from starlette import status
 from datetime import datetime
 from sqlalchemy.orm.session import Session
-from fastapi import Depends, APIRouter, HTTPException, Response, Request
+from fastapi import Depends, APIRouter, HTTPException, Response, status
 
 from app.crud.crud_user import get_user_by_id
 from app.dependencies.auth_deps import get_current_user

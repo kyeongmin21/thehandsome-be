@@ -1,7 +1,6 @@
 from typing import List, Optional
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Response, status
 from sqlalchemy.orm import Session
-from starlette import status
 
 from app.models.user import User
 from app.database import get_db

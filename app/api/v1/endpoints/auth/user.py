@@ -1,6 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
-from starlette import status
 from starlette.responses import JSONResponse
 
 from app.crud.crud_user import create_user
