@@ -8,7 +8,8 @@ def create_qna_service(db: Session, title: str, content: str, author_id: str) ->
         title=title,
         content=content,
         author_id=author_id,
-        admin_id=author_id,  # 작성자와 관리자를 일단 동일하게 처리
+        admin_id=None,
+        answer=None,
         status=QnaStatus.pending,
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
