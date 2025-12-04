@@ -1,13 +1,14 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
+
+from fastapi import HTTPException, status
 from jose import jwt, JWTError, ExpiredSignatureError
 from passlib.context import CryptContext
 import uuid, os
 
-# ⚠️ 배포 시 반드시 환경 변수로 설정!
 SECRET_KEY = os.getenv("SECRET_KEY", "dev_secret_key_change_me")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30  # 토큰 유효 시간 (30분)
+ACCESS_TOKEN_EXPIRE_MINUTES = 60  # 토큰 유효 시간 (60분)
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 
@@ -29,14 +30,9 @@ def create_access_token(
     data: dict,
     expires_delta: timedelta | None = None
 ) -> str:
-    """
-    JWT 액세스 토큰 생성
-    - data: 토큰에 포함할 유저 정보 (예: {"sub": user_id})
-    - expires_delta: 만료 시간 (기본 60분)
-    """
-    to_encode = data.copy()
 
-    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    to_encode = data.copy()
+    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)) # 유효시간 설정부분
     jti = str(uuid.uuid4())  # 토큰 고유 ID (optional)
 
     to_encode.update({
@@ -75,3 +71,16 @@ def decode_jwt_token(token: str) -> dict:
         raise ValueError("Token has expired")
     except JWTError as e:
         raise ValueError("Invalid token") from e
+
+
+def verify_access_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id = payload.get("sub")
+        if not user_id:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                                detail="Token missing user info")
+        return user_id
+    except JWTError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Invalid or expired token")
