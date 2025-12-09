@@ -37,7 +37,7 @@
 * **`app/crud` (Data Access Layer):** $\text{DB}$와의 직접적인 통신(Create, Read, Update, Delete)을 담당합니다. 오직 $\text{SQLAlchemy}$ 쿼리만 수행하며, 비즈니스 로직은 포함하지 않습니다.
 * **`app/models` (ORM Models):** $\text{DB}$ 테이블 구조를 정의한 $\text{SQLAlchemy}$ 모델입니다.
 * **`app/schemas` (Pydantic Models):** $\text{API}$ 요청(`Request Body`) 및 응답(`Response Model`)의 데이터 형식을 정의합니다.
-* 
+  
 
 <br/>
 <br/>
