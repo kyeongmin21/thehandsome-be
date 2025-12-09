@@ -38,7 +38,7 @@ class UserOut(BaseModel):
     name: str
     email: EmailStr # 이메일 형식 자동 검증
     user_id: str
-    phone: str
+    phone: int
     role: UserRole
     login_type: LoginType
     membership_grade: MembershipGrade
