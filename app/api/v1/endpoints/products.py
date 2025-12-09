@@ -20,7 +20,7 @@ def get_products_api(db: Session = Depends(get_db)):
 def create_product_api(product: ProductCreate, db: Session = Depends(get_db)):
     """Service 계층을 통해 상품을 생성합니다."""
     new_product = service_product.create_new_product(db, product)
-    return ProductItem.model_validate(new_product)
+    return new_product
 
 
 ### PUT: 상품 수정 ###
@@ -32,7 +32,7 @@ def update_product_api(product_id: int, updated: ProductUpdate, db: Session = De
     if not updated_product:
         raise HTTPException(status_code=404, detail="상품 없음")
 
-    return ProductItem.model_validate(updated_product)
+    return updated_product
 
 
 ### DELETE: 상품 삭제 ###
