@@ -6,14 +6,31 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 
-def get_products_with_category(db: Session) -> List[Product]:
+def get_products_with_category(db: Session) -> list[type[Product]]:
     """모든 상품을 연결된 카테고리와 함께 조회합니다 (N+1 방지)."""
-    return db.query(Product).options(joinedload(Product.category)).all()
+    return (
+        db.query(Product)
+        .options(
+            joinedload(Product.category)
+            .joinedload(Category.parent)  # ← parent 미리 로딩
+            .joinedload(Category.parent)  # 부모의 부모까지도 (depth 필요에 따라)
+        )
+        .order_by(Product.id.asc())
+        .all()
+    )
 
 
 def get_product_by_id(db: Session, product_id: int) -> Optional[Product]:
     """단일 상품을 ID로 조회합니다."""
-    return db.query(Product).filter(Product.id == product_id).first()
+    return (
+        db.query(Product)
+        .options(
+            joinedload(Product.category)
+            .joinedload(Category.parent)
+        )
+        .filter(Product.id == product_id)
+        .first()
+    )
 
 
 def get_top_level_categories(db: Session) -> List[Category]:
