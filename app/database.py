@@ -1,45 +1,27 @@
+# database.py
 import os
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from dotenv import load_dotenv
-from pathlib import Path
 
-
-# DB 파일 자체에서 환경 변수를 로드합니다.
-# .env 파일 위치를 기준으로 경로를 명시합니다.
-BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(dotenv_path=BASE_DIR / ".env")
-
+load_dotenv()
 
 # MySQL 연결 정보
-# MYSQL_USER = "fastapi_user"
-# MYSQL_PASSWORD = "1204"
-# MYSQL_HOST = "localhost"
-# MYSQL_PORT = "3306"
-# MYSQL_DB = "thehandsome"
-
-# Railway 환경변수 가져오기
-DB_USER = os.getenv("PGUSER")
-DB_PASSWORD = os.getenv("PGPASSWORD")
-DB_HOST = os.getenv("PGHOST")
-DB_PORT = os.getenv("PGPORT")
-DB_NAME = os.getenv("PGDATABASE")
-
+MYSQL_USER = os.getenv("MYSQL_USER")
+MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
+MYSQL_HOST = os.getenv("MYSQL_HOST")
+MYSQL_PORT = os.getenv("MYSQL_PORT")
+MYSQL_DB = os.getenv("MYSQL_DB")
 
 # SQLAlchemy 데이터베이스 URL
 SQLALCHEMY_DATABASE_URL = (
-    f"postgresql+psycopg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
 )
 
 # SQLAlchemy 엔진 생성
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
-    # Psycopg의 타입 처리를 초기화하고 SQLAlchemy가 PG 타입을 더 잘 인식하도록 돕는 옵션
-    connect_args={
-        "options": "-c application_name=my_app",
-        "autocommit": False,
-    },
     echo=True,   # 실행되는 SQL 로그 출력 (개발용)
     future=True  # SQLAlchemy 2.0 스타일
 )
