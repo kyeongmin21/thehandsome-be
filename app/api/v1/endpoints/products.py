@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from sqlalchemy.orm import Session
 from app.database import get_db
+from app.models.category import Category
+from app.models.product import Product
 from app.services import service_products as service_product
 from app.schemas.product import ProductCreate, ProductUpdate, ProductItem, ProductCategoryOut
 from typing import List
@@ -9,10 +11,55 @@ router = APIRouter()
 
 
 ### GET: 전체 상품 조회 ###
-@router.get("", response_model=List[ProductCategoryOut], summary="상품 조회")
-def get_products_api(db: Session = Depends(get_db)):
+@router.get("/grouped", response_model=List[ProductCategoryOut], summary="상품 조회")
+def get_products_grouped_api(db: Session = Depends(get_db)):
     """Service 계층에 그룹핑 로직을 위임합니다."""
     return service_product.get_grouped_products(db)
+
+
+# 상품리스트 페이지 조회
+@router.get("", response_model=List[ProductItem], summary="상품 리스트 조회")
+def get_products_list_api(
+        main: str = None,
+        sub: str = None,
+        db: Session = Depends(get_db)
+):
+    query = db.query(Product)
+
+    if main:
+        # 메인 카테고리 찾기
+        main_category = db.query(Category).filter(
+            Category.name == main,
+            Category.level == 1
+        ).first()
+
+        if main_category:
+            if sub:
+                # 서브 카테고리로 필터링
+                sub_category = db.query(Category).filter(
+                    Category.name == sub,
+                    Category.parent_id == main_category.id
+                ).first()
+
+                if sub_category:
+                    query = query.filter(Product.category_id == sub_category.id)
+            else:
+                # sub가 없으면: 서브 카테고리가 있는지 확인
+                sub_ids = db.query(Category.id).filter(
+                    Category.parent_id == main_category.id
+                ).all()
+                sub_ids = [sid[0] for sid in sub_ids]
+
+                if sub_ids:
+                    # 서브 카테고리가 있으면 그것들로 필터링
+                    query = query.filter(Product.category_id.in_(sub_ids))
+                else:
+                    # 서브 카테고리가 없으면 메인 카테고리 ID로 필터링
+                    query = query.filter(Product.category_id == main_category.id)
+
+    products = query.all()
+    return products
+
 
 
 ### POST: 상품 추가 ###
