@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, DateTime, func
 from sqlalchemy.orm import relationship
 from app.database import Base
 
@@ -15,6 +15,7 @@ class Product(Base):
     brand = Column(String(100))                 # 브랜드
     likes = Column(Integer, default=0)          # 좋아요 수
     src = Column(String(1000))
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
 
     category = relationship("Category", back_populates="products")
     wishlist = relationship("WishList", back_populates="product")

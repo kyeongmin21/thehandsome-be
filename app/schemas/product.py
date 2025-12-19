@@ -1,28 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
-
-# 상품 생성용 데이터 (프론트에서 보내는 입력)
-class ProductCreate(BaseModel):
-    product_code: str
-    name: str
-    price: int
-    discount_price: Optional[int] = None
-    discount_rate: Optional[float] = None
-    category_id: int
-    brand: Optional[str] = None
-    src: Optional[str] = None
-
-# 상품 수정용 데이터
-class ProductUpdate(BaseModel):
-    product_code: Optional[str] = None
-    name: Optional[str] = None
-    price: Optional[int] = None
-    discount_price: Optional[int] = None
-    discount_rate: Optional[float] = None
-    category_id: Optional[int] = None
-    brand: Optional[str] = None
-    likes: Optional[int] = None
-    src: Optional[str] = None
+from enum import Enum
 
 
 # 단일 상품 반환용
@@ -51,3 +29,44 @@ class ProductCategoryOut(BaseModel):
     model_config = {
         "from_attributes": True
     }
+
+
+class ProductSort(str, Enum):
+    price_asc = "price_asc"
+    price_desc = "price_desc"
+    latest = "latest"
+
+
+# 상품 리스트 페이지
+class ProductListResponse(BaseModel):
+    items: List[ProductItem]
+    page: int
+    size: int
+    sort: ProductSort
+    totalCount: int
+    totalPages: int
+
+
+# 상품 생성용 데이터 (프론트에서 보내는 입력)
+class ProductCreate(BaseModel):
+    product_code: str
+    name: str
+    price: int
+    discount_price: Optional[int] = None
+    discount_rate: Optional[float] = None
+    category_id: int
+    brand: Optional[str] = None
+    src: Optional[str] = None
+
+
+# 상품 수정용 데이터
+class ProductUpdate(BaseModel):
+    product_code: Optional[str] = None
+    name: Optional[str] = None
+    price: Optional[int] = None
+    discount_price: Optional[int] = None
+    discount_rate: Optional[float] = None
+    category_id: Optional[int] = None
+    brand: Optional[str] = None
+    likes: Optional[int] = None
+    src: Optional[str] = None

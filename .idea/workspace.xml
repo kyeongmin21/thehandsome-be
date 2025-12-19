@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1b88942-4f90-43ea-a450-f794e6fccbea" name="Changes" comment="브랜드 코드 수정">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/auth/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/auth/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/auth/refresh.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/auth/refresh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dependencies/auth_deps.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/dependencies/auth_deps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/service_refresh.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/service_refresh.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/products.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/products.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/product.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="feature" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,7 +69,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/min/Pycharm/thehandsome-be&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -591,7 +591,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764853344363</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="products api 수정">
+      <option name="closed" value="true" />
+      <created>1765772136980</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1765772136981</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -763,13 +771,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/product.py</url>
-          <line>18</line>
+          <line>19</line>
           <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/products.py</url>
-          <line>11</line>
-          <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/schemas/wishlist.py</url>
@@ -830,11 +833,6 @@
           <url>file://$PROJECT_DIR$/app/main.py</url>
           <line>48</line>
           <option name="timeStamp" value="140" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/database.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="141" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/product.py</url>
@@ -900,6 +898,21 @@
           <url>file://$PROJECT_DIR$/app/services/service_refresh.py</url>
           <line>5</line>
           <option name="timeStamp" value="169" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/main.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="170" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/schemas/product.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/schemas/product.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="174" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

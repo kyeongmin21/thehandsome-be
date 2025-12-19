@@ -1,27 +1,33 @@
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, Query
+from sqlalchemy import asc, desc
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.category import Category
 from app.models.product import Product
 from app.services import service_products as service_product
-from app.schemas.product import ProductCreate, ProductUpdate, ProductItem, ProductCategoryOut
+from app.schemas.product import ProductCreate, ProductUpdate, ProductItem, ProductCategoryOut, ProductListResponse, \
+    ProductSort
 from typing import List
+import math
 
 router = APIRouter()
 
 
-### GET: 전체 상품 조회 ###
-@router.get("/grouped", response_model=List[ProductCategoryOut], summary="상품 조회")
+### GET: 전체 상품 조회 (메인페이지) ###
+@router.get("/grouped", response_model=List[ProductCategoryOut], summary="메인페이지 상품 조회")
 def get_products_grouped_api(db: Session = Depends(get_db)):
     """Service 계층에 그룹핑 로직을 위임합니다."""
     return service_product.get_grouped_products(db)
 
 
 # 상품리스트 페이지 조회
-@router.get("", response_model=List[ProductItem], summary="상품 리스트 조회")
+@router.get("", response_model=ProductListResponse, summary="리스트페이지 상품 조회 (페이지네이션)")
 def get_products_list_api(
         main: str = None,
         sub: str = None,
+        page: int = Query(1, ge=1),
+        size: int = Query(8, ge=1, le=50),
+        sort: ProductSort = Query(ProductSort.latest),
         db: Session = Depends(get_db)
 ):
     query = db.query(Product)
@@ -57,9 +63,35 @@ def get_products_list_api(
                     # 서브 카테고리가 없으면 메인 카테고리 ID로 필터링
                     query = query.filter(Product.category_id == main_category.id)
 
-    products = query.all()
-    return products
 
+    # 1. 정렬
+    if sort == ProductSort.price_asc:
+        query = query.order_by(asc(Product.price))
+    elif sort == ProductSort.price_desc:
+        query = query.order_by(desc(Product.price))
+    elif sort == ProductSort.latest:
+        query = query.order_by(desc(Product.created_at))
+
+    # 2. count
+    total_count = query.count()
+    total_pages = math.ceil(total_count / size)
+
+    # 3. pagination
+    products = (
+        query
+        .offset((page - 1) * size)
+        .limit(size)
+        .all()
+    )
+
+    return {
+        "items": products,
+        "page": page,
+        "size": size,
+        "sort": sort,
+        "totalCount": total_count,
+        "totalPages": total_pages
+    }
 
 
 ### POST: 상품 추가 ###
